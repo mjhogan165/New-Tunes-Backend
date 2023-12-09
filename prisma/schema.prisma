@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int    @id @default(autoincrement())
+  username String 
+  password String?
+  email    String?
+  profileImg String?
+  sentRequests FriendRequest[]  @relation("sentRequests")
+  receivedRequests FriendRequest[]  @relation("receivedRequests")
+  createdBy NewTune[] @relation("createdBy")
+}
+
+model FriendRequest {
+  id Int @id @default(autoincrement())
+  sender User @relation("sentRequests", fields: [senderId], references: [id])
+  senderId Int
+  receiver User  @relation("receivedRequests", fields: [receiverId], references: [id])
+  receiverId Int
+  status String
+}
+
+model NewTune {
+  id Int @id @default(autoincrement())
+  artist String
+  title String
+  img String?
+  createdBy User @relation("createdBy", fields: [createdById], references: [id])
+  createdById Int
+  comment String?
+  tagged String?
+}
+
+// model Tunes {
+//   id Int @id @default(autoincrement())
+//   artist String?
+//   title String?
+// }
