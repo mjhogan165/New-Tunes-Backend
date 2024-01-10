@@ -13,14 +13,14 @@ model User {
   password String?
   email    String?
   profileImg String?
-  sentRequests FriendRequest[]  @relation("sentRequests")
+  sentRequests FriendRequest[] @relation("sentRequests")
   receivedRequests FriendRequest[]  @relation("receivedRequests")
   createdBy NewTune[] @relation("createdBy")
 }
 
 model FriendRequest {
   id Int @id @default(autoincrement())
-  sender User @relation("sentRequests", fields: [senderId], references: [id])
+  sender User  @relation("sentRequests", fields: [senderId], references: [id])
   senderId Int
   receiver User  @relation("receivedRequests", fields: [receiverId], references: [id])
   receiverId Int

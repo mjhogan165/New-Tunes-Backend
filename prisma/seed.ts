@@ -6,13 +6,13 @@ import { FriendRequest } from "@prisma/client";
 
 export async function seedUsers() {
   await clearDb();
-  // const userOne = await prisma.user.create({
-  //   data: {
-  //     username: "user-one",
-  //     password: "passwordsyeah",
-  //     email: "bestemail@email.com",
-  //   },
-  // });
+  const userOne = await prisma.user.create({
+    data: {
+      username: "user-one",
+      password: "passwordsyeah",
+      email: "bestemail@email.com",
+    },
+  });
   // const userTwo = await prisma.user.create({
   //   data: {
   //     username: "user-two",

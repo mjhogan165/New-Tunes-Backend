@@ -22,7 +22,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-
 app.get("/", (_req, res) => {
   res.json({ message: "Hellooooo World!!!" }).status(200); // the 'status' is unnecessary but wanted to show you how to define a status
 });
@@ -58,3 +57,4 @@ app.post("/users", async (req, res) => {
   res.status(200).send(users);
 });
 app.listen(3001);
+///4444
